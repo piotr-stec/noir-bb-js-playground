@@ -1,7 +1,3 @@
-import { compile, createFileManager } from "@noir-lang/noir_wasm"
-
-import main from "./circuit/src/main.nr?url";
-import nargoToml from "./circuit/Nargo.toml?url";
 import { UltraHonkBackend } from '@aztec/bb.js';
 import { Noir } from '@noir-lang/noir_js';
 
@@ -111,7 +107,7 @@ document.getElementById("submit").addEventListener("click", async () => {
 
         console.log("local proof len", proofBin.length);
         console.log("local proof", proofBin);
-        
+
         show("results", proofBin);
 
         console.log("Parsing local proof... ⌛");

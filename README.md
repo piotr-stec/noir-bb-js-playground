@@ -1,5 +1,7 @@
 # Setup
 
+- `pip install garaga`
+- `bbup --version 0.67.0`
 - `bun i`
 - `bunx vite`
 
