@@ -100,26 +100,31 @@ document.getElementById("submit").addEventListener("click", async () => {
         let vkAgeBytes = await fetch('static/vk_circuit.bin').then((res) => res.bytes());
 
         const parsedVerKey = garaga.parseHonkVerifyingKeyFromBytes(vkAgeBytes);
-        console.log("bb.js proof len", proof.proof.length);
+        show('logs', `bb.js proof len ${proof.proof.length}`);
+
         console.log("bb.js proof", proof.proof);
 
         let proofBin = await fetch('static/proof.bin').then((res) => res.bytes());
 
-        console.log("local proof len", proofBin.length);
+        show('logs', `local proof len ${proofBin.length}`);
         console.log("local proof", proofBin);
 
         show("results", proofBin);
 
-        console.log("Parsing local proof... ⌛");
+        show('logs', 'Parsing local proof... ⌛');
         const parsedProofLocal = garaga.parseHonkProofFromBytes(proofBin);
+        show('logs', 'Local proof parsed ✅');
         console.log("local proof parsed", parsedProofLocal);
 
-        console.log("Parsing bb.js proof... ⌛");
+        show('logs', 'Parsing bb.js proof... ⌛');
         const parsedProof = garaga.parseHonkProofFromBytes(proof.proof);
+        show('logs', 'bb.js proof parsed ✅');
+
         console.log("bb.js proof parsed", parsedProof);
         const calldata = garaga.getHonkCallData(parsedProof, parsedVerKey, 0);
         console.log("calldata: ", calldata);
     } catch (err) {
+        show('logs', `Error: ${err} ⚠️`);
         console.log(err);
     }
 });
